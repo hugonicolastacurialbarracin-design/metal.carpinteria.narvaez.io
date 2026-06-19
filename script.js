@@ -68,61 +68,61 @@
       nombre: 'Armarios a medida', 
       material: 'Madera de pino y roble', 
       desc: 'Diseños personalizados para cada espacio.',
-      img: 'static/img/armario.jpg'
+      img: 'armario.jpg'
     },
     { 
       nombre: 'Mesas familiares', 
       material: 'Madera de nogal y castaño', 
       desc: 'Mesas amplias y duraderas para reuniones.',
-      img: 'static/img/mesas.jpg'
+      img: 'mesas.jpg'
     },
     { 
       nombre: 'Sillas de madera', 
       material: 'Roble y haya', 
       desc: 'Sólidas, cómodas y con estilo rústico.',
-      img: 'static/img/sillas.png'
+      img: 'sillas.png'
     },
     { 
       nombre: 'Aparadores', 
       material: 'Cedro y caoba', 
       desc: 'Elegancia y funcionalidad para tu hogar.',
-      img: 'static/img/aparadores.png'
+      img: 'aparadores.png'
     },
     { 
       nombre: 'Puertas principales', 
       material: 'Madera maciza de pino', 
       desc: 'Seguridad y belleza en la entrada.',
-      img: 'static/img/puertas.png'
+      img: 'puertas.png'
     },
     { 
       nombre: 'Marcos estructurales', 
       material: 'Madera laminada', 
       desc: 'Perfectos para techos y vigas a la vista.',
-      img: 'static/img/marcos.png'
+      img: 'marcos.png'
     },
     { 
       nombre: 'Letreros tallados', 
       material: 'Madera de algarrobo', 
       desc: 'Arte en madera para negocios y hogares.',
-      img: 'static/img/letreros.png'
+      img: 'letreros.png'
     },
     { 
       nombre: 'Camas y cabeceras', 
       material: 'Pino y cerezo', 
       desc: 'Diseños únicos para un descanso reparador.',
-      img: 'static/img/camas.png'
+      img: 'camas.png'
     },
     { 
       nombre: 'Cobertizos / Pérgolas', 
       material: 'Madera tratada', 
       desc: 'Estructuras exteriores resistentes y hermosas.',
-      img: 'static/img/cobertizo.png'
+      img: 'cobertizo.png'
     },
     { 
       nombre: 'Casitas para mascotas', 
       material: 'Madera reciclada', 
       desc: 'Hogares acogedores para tus compañeros.',
-      img: 'static/img/casa_perro.png'
+      img: 'casa_perro.png'
     }
   ];
 
