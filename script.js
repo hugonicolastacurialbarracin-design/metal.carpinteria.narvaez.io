@@ -1,6 +1,6 @@
 // ============================================================
-// SCRIPT - CARPINTERÍA ALFREDO
-// Menú hamburguesa, WhatsApp, catálogo dinámico, galería y validación
+// SCRIPT - Metal Carpintería Narváez
+// Menú hamburguesa, WhatsApp, catálogo dinámico, galería con carruseles
 // ============================================================
 
 (function() {
@@ -38,7 +38,7 @@
 
   // ---------- 2. WHATSAPP ----------
   const DEFAULT_WHATSAPP_MESSAGE = 'Hola, me gustaría cotizar un mueble a medida. ¿Podrían ayudarme?';
-  const PHONE_NUMBER = '5491123456789'; // Reemplazar con número real
+  const PHONE_NUMBER = '0982021792';
 
   function handleWhatsAppClick(e) {
     const btn = e.currentTarget;
@@ -62,67 +62,87 @@
     });
   });
 
-  // ---------- 3. DATOS DE PRODUCTOS CON IMÁGENES ----------
+  // ---------- 3. DATOS DE PRODUCTOS CON MÚLTIPLES IMÁGENES ----------
   const productosData = [
-    { 
-      nombre: 'Armarios a medida', 
-      material: 'Madera de pino y roble', 
+    {
+      nombre: 'Armarios a medida',
+      material: 'Madera o metal, según preferencia',
       desc: 'Diseños personalizados para cada espacio.',
-      img: 'armario.jpg'
+      imagenes: [
+        'armario.jpg', 'armario.png', 'armario3.png', 'armario2.png', 'armario4.png'
+      ]
     },
-    { 
-      nombre: 'Mesas familiares', 
-      material: 'Madera de nogal y castaño', 
+    {
+      nombre: 'Mesas familiares',
+      material: 'Madera',
       desc: 'Mesas amplias y duraderas para reuniones.',
-      img: 'mesas.jpg'
+      imagenes: ['mesas.jpg']
     },
-    { 
-      nombre: 'Sillas de madera', 
-      material: 'Roble y haya', 
+    {
+      nombre: 'Sillas de madera',
+      material: 'Madera o metal, según preferencia',
       desc: 'Sólidas, cómodas y con estilo rústico.',
-      img: 'sillas.png'
+      imagenes: ['sillas.png', 'sillas2.png', 'sillas3.png']
     },
-    { 
-      nombre: 'Aparadores', 
-      material: 'Cedro y caoba', 
+    {
+      nombre: 'Aparadores',
+      material: 'Unitarios o juegos completos',
       desc: 'Elegancia y funcionalidad para tu hogar.',
-      img: 'aparadores.png'
+      imagenes: ['aparadores.png', 'juego_aparadores.png']
     },
-    { 
-      nombre: 'Puertas principales', 
-      material: 'Madera maciza de pino', 
+    {
+      nombre: 'Puertas',
+      material: 'Madera',
       desc: 'Seguridad y belleza en la entrada.',
-      img: 'puertas.png'
+      imagenes: ['puertas.png']
     },
-    { 
-      nombre: 'Marcos estructurales', 
-      material: 'Madera laminada', 
-      desc: 'Perfectos para techos y vigas a la vista.',
-      img: 'marcos.png'
+    {
+      nombre: 'Marcos para fotos o pinturas',
+      material: 'Madera',
+      desc: 'Perfectos para decorar tu espacio.',
+      imagenes: ['marcos.png']
     },
-    { 
-      nombre: 'Letreros tallados', 
-      material: 'Madera de algarrobo', 
+    {
+      nombre: 'Letreros tallados',
+      material: 'Madera',
       desc: 'Arte en madera para negocios y hogares.',
-      img: 'letreros.png'
+      imagenes: ['letreros.png']
     },
-    { 
-      nombre: 'Camas y cabeceras', 
-      material: 'Pino y cerezo', 
+    {
+      nombre: 'Camas',
+      material: 'Madera o metal, según preferencia',
       desc: 'Diseños únicos para un descanso reparador.',
-      img: 'camas.png'
+      imagenes: ['camas.png', 'cama2.png', 'camas3.png']
     },
-    { 
-      nombre: 'Cobertizos / Pérgolas', 
-      material: 'Madera tratada', 
+    {
+      nombre: 'Cobertizos',
+      material: 'Madera',
       desc: 'Estructuras exteriores resistentes y hermosas.',
-      img: 'cobertizo.png'
+      imagenes: ['cobertizo.png']
     },
-    { 
-      nombre: 'Casitas para mascotas', 
-      material: 'Madera reciclada', 
+    {
+      nombre: 'Casitas para mascotas',
+      material: 'Madera',
       desc: 'Hogares acogedores para tus compañeros.',
-      img: 'casa_perro.png'
+      imagenes: ['casa_perro.png']
+    },
+    {
+      nombre: 'Escaleras',
+      material: 'Madera o metal, según preferencia',
+      desc: 'Escaleras sólidas y elegantes, diseñadas a medida.',
+      imagenes: ['escaleras.png', 'escaleras2.png']
+    },
+    {
+      nombre: 'Ventanas',
+      material: 'Madera o metal, según preferencia',
+      desc: 'Ventanas rústicas con excelente aislamiento y durabilidad.',
+      imagenes: ['ventana.png']
+    },
+    {
+      nombre: 'Percheros',
+      material: 'Madera o metal, según preferencia',
+      desc: 'Percheros únicos, perfectos para recibidores y espacios rústicos.',
+      imagenes: ['perchero_hierro.png']
     }
   ];
 
@@ -132,10 +152,11 @@
     if (!grid) return;
 
     let html = '';
-    productosData.forEach((prod, index) => {
+    productosData.forEach((prod) => {
+      const imgPrincipal = prod.imagenes.length > 0 ? prod.imagenes[0] : '';
       html += `
         <div class="producto-card">
-          <img src="${prod.img}" alt="${prod.nombre}" class="producto-imagen" loading="lazy" />
+          <img src="${imgPrincipal}" alt="${prod.nombre}" class="producto-imagen" loading="lazy" />
           <h3>${prod.nombre}</h3>
           <p class="producto-material">Material sugerido: ${prod.material}</p>
           <p class="producto-desc">${prod.desc}</p>
@@ -154,20 +175,102 @@
     });
   }
 
-  // ---------- 5. RENDERIZAR GALERÍA ----------
+  // ---------- 5. RENDERIZAR GALERÍA CON CARRUSELES ----------
   function renderGaleria() {
-    const grid = document.getElementById('galeriaGrid');
-    if (!grid) return;
+    const container = document.getElementById('galeriaContainer');
+    if (!container) return;
 
-    // Usamos las mismas imágenes pero en un layout de galería
     let html = '';
-    productosData.forEach(prod => {
-      html += `<img src="${prod.img}" alt="${prod.nombre}" loading="lazy" />`;
+    productosData.forEach((prod, index) => {
+      if (prod.imagenes.length === 0) return;
+
+      // Crear los slides
+      let slidesHtml = '';
+      prod.imagenes.forEach((img) => {
+        slidesHtml += `<img src="${img}" alt="${prod.nombre}" class="carrusel-slide" loading="lazy" />`;
+      });
+
+      // Crear indicadores
+      let indicadoresHtml = '';
+      for (let i = 0; i < prod.imagenes.length; i++) {
+        indicadoresHtml += `<button class="carrusel-indicador ${i === 0 ? 'active' : ''}" data-index="${i}"></button>`;
+      }
+
+      html += `
+        <div class="carrusel-categoria" data-categoria="${index}">
+          <h3>${prod.nombre}</h3>
+          <div class="carrusel-wrapper">
+            <div class="carrusel-slides" data-slide="${index}">
+              ${slidesHtml}
+            </div>
+            <button class="carrusel-btn prev" data-categoria="${index}"><i class="fas fa-chevron-left"></i></button>
+            <button class="carrusel-btn next" data-categoria="${index}"><i class="fas fa-chevron-right"></i></button>
+          </div>
+          <div class="carrusel-indicadores" data-categoria="${index}">
+            ${indicadoresHtml}
+          </div>
+        </div>
+      `;
     });
-    grid.innerHTML = html;
+    container.innerHTML = html;
+
+    // Inicializar cada carrusel
+    inicializarCarruseles();
   }
 
-  // ---------- 6. VALIDACIÓN DEL FORMULARIO ----------
+  // ---------- 6. LÓGICA DE CARRUSELES ----------
+  function inicializarCarruseles() {
+    const categorias = document.querySelectorAll('.carrusel-categoria');
+    categorias.forEach((cat, idx) => {
+      const slidesContainer = cat.querySelector('.carrusel-slides');
+      const slides = slidesContainer.querySelectorAll('.carrusel-slide');
+      const totalSlides = slides.length;
+      if (totalSlides <= 1) {
+        // Ocultar botones si solo hay una imagen
+        cat.querySelector('.carrusel-btn.prev').style.display = 'none';
+        cat.querySelector('.carrusel-btn.next').style.display = 'none';
+        cat.querySelector('.carrusel-indicadores').style.display = 'none';
+        return;
+      }
+
+      let currentIndex = 0;
+      const prevBtn = cat.querySelector('.carrusel-btn.prev');
+      const nextBtn = cat.querySelector('.carrusel-btn.next');
+      const indicadores = cat.querySelectorAll('.carrusel-indicador');
+
+      function goToSlide(index) {
+        if (index < 0) index = totalSlides - 1;
+        if (index >= totalSlides) index = 0;
+        currentIndex = index;
+        const offset = -currentIndex * 100;
+        slidesContainer.style.transform = `translateX(${offset}%)`;
+        // Actualizar indicadores
+        indicadores.forEach((ind, i) => {
+          ind.classList.toggle('active', i === currentIndex);
+        });
+      }
+
+      prevBtn.addEventListener('click', function(e) {
+        e.stopPropagation();
+        goToSlide(currentIndex - 1);
+      });
+
+      nextBtn.addEventListener('click', function(e) {
+        e.stopPropagation();
+        goToSlide(currentIndex + 1);
+      });
+
+      indicadores.forEach((ind, i) => {
+        ind.addEventListener('click', function() {
+          goToSlide(i);
+        });
+      });
+
+      // Opcional: teclado o touch, pero por simplicidad no se implementa.
+    });
+  }
+
+  // ---------- 7. VALIDACIÓN DEL FORMULARIO ----------
   function initForm() {
     const form = document.getElementById('contactForm');
     const feedback = document.getElementById('formFeedback');
@@ -215,13 +318,12 @@
     });
   }
 
-  // ---------- 7. EJECUTAR AL CARGAR ----------
+  // ---------- 8. EJECUTAR AL CARGAR ----------
   if (document.readyState === 'loading') {
     document.addEventListener('DOMContentLoaded', function() {
       renderCatalogo();
       renderGaleria();
       initForm();
-      // Reasignar eventos a botones ya existentes (hero)
       const heroBtns = document.querySelectorAll('.hero .btn-whatsapp');
       heroBtns.forEach(btn => btn.addEventListener('click', handleWhatsAppClick));
     });
