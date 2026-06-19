@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Carpintería Alfredo</title>
+  <!-- Preconexión a Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Lato:wght@300;400;700&display=swap" rel="stylesheet" />
+  <!-- Font Awesome (iconos profesionales) -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" />
+  <!-- Estilos principales -->
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <!-- ========== ENCABEZADO ========== -->
+  <header class="header">
+    <div class="container header-container">
+      <div class="logo">
+        <img src="static/img/carpinteria_alfredo.png" alt="Logo Carpintería Alfredo" class="logo-img" />
+        <h1 class="logo-text">Carpintería <br /><span>Alfredo</span></h1>
+      </div>
+      <button class="menu-toggle" id="menuToggle" aria-label="Abrir menú">
+        <span class="bar"></span>
+        <span class="bar"></span>
+        <span class="bar"></span>
+      </button>
+      <nav class="nav" id="navMenu">
+        <ul class="nav-list">
+          <li><a href="#hero">Inicio</a></li>
+          <li><a href="#filosofia">Filosofía</a></li>
+          <li><a href="#catalogo">Catálogo</a></li>
+          <li><a href="#galeria">Galería</a></li>
+          <li><a href="#pagos">Pagos</a></li>
+          <li><a href="#contacto">Contacto</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <!-- ========== HERO ========== -->
+  <section id="hero" class="hero">
+    <div class="container hero-container">
+      <div class="hero-content">
+        <h2 class="hero-title">Muebles de madera a tu medida</h2>
+        <p class="hero-sub">
+          Trabajo artesanal bajo pedido y altamente personalizado.
+          Usted decide el diseño, aquí se lo crea.
+        </p>
+        <a href="#" class="btn btn-primary btn-whatsapp" data-message="Hola, me gustaría cotizar un mueble a medida. ¿Podrían ayudarme?">
+          <i class="fab fa-whatsapp"></i> Cotizar por WhatsApp
+        </a>
+      </div>
+      <div class="hero-image">
+        <img src="https://images.unsplash.com/photo-1586023492125-27b2c045efd7?w=600&auto=format&fit=crop" alt="Taller de carpintería artesanal" loading="lazy" />
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== FILOSOFÍA ========== -->
+  <section id="filosofia" class="filosofia">
+    <div class="container">
+      <h2 class="section-title">Nuestra Filosofía</h2>
+      <div class="filosofia-grid">
+        <div class="filosofia-card">
+          <h3><i class="fas fa-bullseye"></i> Misión</h3>
+          <p>
+            Ofrecer productos hechos de manera que aseguren una calidad alta y que cumplan con todas las especificaciones del cliente, lo que permitirá asegurar un servicio altamente personalizado.
+          </p>
+        </div>
+        <div class="filosofia-card">
+          <h3><i class="fas fa-eye"></i> Visión</h3>
+          <p>
+            Ser una de las mejores opciones de adquisición de productos hechos en madera en la parroquia, buscando ser conocida en esta no solo por medio de la implementación de tecnologías como las redes sociales sino asegurando en todos los casos un servicio de la más alta calidad.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== CATÁLOGO DE SERVICIOS (10 productos) ========== -->
+  <section id="catalogo" class="catalogo">
+    <div class="container">
+      <h2 class="section-title">Catálogo de Servicios</h2>
+      <p class="catalogo-intro">
+        Diseños personalizados, siempre bajo pedido.
+      </p>
+      <div class="catalogo-grid" id="catalogoGrid">
+        <!-- Los productos se inyectan con JavaScript -->
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== GALERÍA DE IMÁGENES (Nuevo apartado) ========== -->
+  <section id="galeria" class="galeria">
+    <div class="container">
+      <h2 class="section-title">Trabajos a servicio</h2>
+      <p class="galeria-intro">Imágenes de algunos de los productos que se realizan bajo pedido.</p>
+      <div class="galeria-grid" id="galeriaGrid">
+        <!-- Se llena dinámicamente con JS -->
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== MEDIOS DE PAGO ========== -->
+  <section id="pagos" class="pagos">
+    <div class="container">
+      <h2 class="section-title">Medios de Pago</h2>
+      <div class="pagos-content">
+        <div class="pagos-item">
+          <i class="fas fa-money-bill-wave pagos-icon"></i>
+          <h3>Efectivo</h3>
+          <p>Pago en el taller.</p>
+        </div>
+        <div class="pagos-item">
+          <i class="fas fa-university pagos-icon"></i>
+          <h3>Transferencia Bancaria</h3>
+          <p>
+            <strong>Banco:</strong> Banco Rural<br />
+            <strong>Cuenta Corriente:</strong> 1234-5678-90<br />
+            <strong>RUT:</strong> 12.345.678-9<br />
+            <strong>Titular:</strong> Carpintería Alfredo
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== CONTACTO Y UBICACIÓN ========== -->
+  <section id="contacto" class="contacto">
+    <div class="container">
+      <h2 class="section-title">Contacto y Ubicación</h2>
+      <div class="contacto-grid">
+        <!-- Formulario -->
+        <div class="contacto-form">
+          <h3>Envíanos un mensaje</h3>
+          <form id="contactForm" novalidate>
+            <div class="form-group">
+              <label for="nombre">Nombre completo</label>
+              <input type="text" id="nombre" placeholder="Tu nombre" required />
+            </div>
+            <div class="form-group">
+              <label for="email">Correo electrónico</label>
+              <input type="email" id="email" placeholder="tucorreo@ejemplo.com" required />
+            </div>
+            <div class="form-group">
+              <label for="mensaje">Mensaje</label>
+              <textarea id="mensaje" rows="4" placeholder="¿Qué te gustaría cotizar?" required></textarea>
+            </div>
+            <button type="submit" class="btn btn-primary"><i class="fas fa-paper-plane"></i> Enviar mensaje</button>
+            <div id="formFeedback" class="form-feedback"></div>
+          </form>
+        </div>
+        <!-- Ubicación y redes -->
+        <div class="contacto-info">
+          <div class="contacto-redes">
+            <h3>Redes sociales</h3>
+            <ul class="redes-list">
+              <li><a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i> Instagram</a></li>
+              <li><a href="#" aria-label="Facebook"><i class="fab fa-facebook"></i> Facebook</a></li>
+              <li><a href="#" aria-label="WhatsApp"><i class="fab fa-whatsapp"></i> WhatsApp</a></li>
+            </ul>
+          </div>
+          <div class="contacto-mapa">
+            <h3>Nuestro taller</h3>
+            <div class="mapa-wrapper">
+              <iframe
+                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3284.016887189517!2d-58.383759!3d-34.603738!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x4aa9f0a6da5edb%3A0x11e6c4a5f1b4b8c!2sBuenos%20Aires!5e0!3m2!1ses!2sar!4v1650000000000!5m2!1ses!2sar"
+                width="100%"
+                height="250"
+                style="border:0;"
+                allowfullscreen=""
+                loading="lazy"
+                referrerpolicy="no-referrer-when-downgrade"
+                title="Ubicación del taller"
+              ></iframe>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== PIE DE PÁGINA ========== -->
+  <footer class="footer">
+    <div class="container footer-container">
+      <p class="footer-copy">
+        &copy; 2026 Carpintería Alfredo. Todos los derechos reservados.
+      </p>
+      <ul class="footer-links">
+        <li><a href="#hero">Inicio</a></li>
+        <li><a href="#catalogo">Catálogo</a></li>
+        <li><a href="#galeria">Galería</a></li>
+        <li><a href="#contacto">Contacto</a></li>
+      </ul>
+    </div>
+  </footer>
+
+  <!-- ========== SCRIPTS ========== -->
+  <script src="script.js"></script>
+</body>
+</html>
