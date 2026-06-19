@@ -3,7 +3,6 @@
    Mobile First · CSS Puro · Sin Frameworks
    ============================================================ */
 
-/* ---------- RESET Y BOX-SIZING ---------- */
 * {
   margin: 0;
   padding: 0;
@@ -16,12 +15,11 @@ html {
 
 body {
   font-family: 'Lato', sans-serif;
-  background-color: #faf6f0;  /* fondo cálido */
+  background-color: #faf6f0;
   color: #2d2d2d;
   line-height: 1.6;
 }
 
-/* ---------- TIPOGRAFÍA ---------- */
 h1, h2, h3, h4, .logo-text {
   font-family: 'Playfair Display', serif;
   font-weight: 700;
@@ -39,12 +37,11 @@ h1, h2, h3, h4, .logo-text {
   display: block;
   width: 80px;
   height: 4px;
-  background: #6b8e23; /* verde oliva */
+  background: #6b8e23;
   margin: 0.5rem auto 0;
   border-radius: 2px;
 }
 
-/* ---------- CONTENEDOR ---------- */
 .container {
   max-width: 1200px;
   margin: 0 auto;
@@ -69,7 +66,7 @@ h1, h2, h3, h4, .logo-text {
   margin-right: 0.5rem;
 }
 .btn-primary {
-  background-color: #6b8e23; /* verde oliva */
+  background-color: #6b8e23;
   color: #fff;
 }
 .btn-primary:hover,
@@ -78,7 +75,7 @@ h1, h2, h3, h4, .logo-text {
   transform: scale(1.02);
 }
 .btn-whatsapp {
-  background-color: #25d366; /* verde WhatsApp */
+  background-color: #25d366;
   color: #fff;
 }
 .btn-whatsapp:hover {
@@ -127,7 +124,6 @@ h1, h2, h3, h4, .logo-text {
   letter-spacing: 1px;
 }
 
-/* ----- Menú móvil (hamburguesa) ----- */
 .menu-toggle {
   display: flex;
   flex-direction: column;
@@ -273,7 +269,6 @@ h1, h2, h3, h4, .logo-text {
   gap: 1.8rem;
 }
 
-/* Tarjeta de producto */
 .producto-card {
   background: #fffcf8;
   border-radius: 16px;
@@ -319,7 +314,7 @@ h1, h2, h3, h4, .logo-text {
 }
 
 /* ============================================================
-   GALERÍA (nuevo apartado)
+   GALERÍA CON CARRUSELES (MEJORADA)
    ============================================================ */
 .galeria {
   padding: 3rem 0;
@@ -331,21 +326,98 @@ h1, h2, h3, h4, .logo-text {
   font-size: 1.1rem;
   color: #5a4c3c;
 }
-.galeria-grid {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: 1.2rem;
+
+.carrusel-categoria {
+  margin-bottom: 2.5rem;
+  background: #fffcf8;
+  border-radius: 16px;
+  padding: 1.5rem 1rem;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.04);
 }
-.galeria-grid img {
-  width: 100%;
-  height: 200px;
-  object-fit: cover;
+.carrusel-categoria h3 {
+  font-size: 1.4rem;
+  margin-bottom: 0.8rem;
+  color: #3e2c1b;
+  text-align: center;
+  font-family: 'Playfair Display', serif;
+}
+
+.carrusel-wrapper {
+  position: relative;
+  width: 300px;          /* ← Ancho fijo */
+  height: 300px;         /* ← Alto fijo (cuadrado) */
+  margin: 0 auto;        /* Centrado */
+  overflow: hidden;
   border-radius: 12px;
-  box-shadow: 0 4px 10px rgba(0,0,0,0.08);
-  transition: transform 0.2s;
+  background-color: #e6d9cc;
 }
-.galeria-grid img:hover {
-  transform: scale(1.02);
+
+/* Slides: contenedor absoluto que ocupa todo el espacio */
+.carrusel-slides {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  transition: transform 0.4s ease;
+}
+
+/* Cada slide ocupa el 100% del contenedor */
+.carrusel-slide {
+  min-width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+/* Botones de navegación */
+.carrusel-btn {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background: rgba(0,0,0,0.5);
+  color: #fff;
+  border: none;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  font-size: 1.5rem;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background 0.2s;
+  z-index: 5;
+}
+.carrusel-btn:hover {
+  background: rgba(0,0,0,0.7);
+}
+.carrusel-btn.prev {
+  left: 10px;
+}
+.carrusel-btn.next {
+  right: 10px;
+}
+
+/* Indicadores */
+.carrusel-indicadores {
+  display: flex;
+  justify-content: center;
+  gap: 0.6rem;
+  margin-top: 0.8rem;
+}
+.carrusel-indicador {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background: #d6cbbc;
+  border: none;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+.carrusel-indicador.active {
+  background: #6b8e23;
 }
 
 /* ============================================================
@@ -395,7 +467,6 @@ h1, h2, h3, h4, .logo-text {
   margin-top: 1rem;
 }
 
-/* Formulario */
 .contacto-form {
   background: #fffcf8;
   padding: 2rem 1.5rem;
@@ -442,7 +513,6 @@ h1, h2, h3, h4, .logo-text {
   color: #b33c3c;
 }
 
-/* Info contacto */
 .contacto-info {
   display: flex;
   flex-direction: column;
@@ -514,19 +584,14 @@ h1, h2, h3, h4, .logo-text {
 }
 
 /* ============================================================
-   RESPONSIVE: TABLETS Y ESCRITORIO
+   RESPONSIVE
    ============================================================ */
-
-/* Tablets (≥ 600px) */
 @media (min-width: 600px) {
   .hero-title {
     font-size: 2.8rem;
   }
   .catalogo-grid {
     grid-template-columns: repeat(2, 1fr);
-  }
-  .galeria-grid {
-    grid-template-columns: repeat(3, 1fr);
   }
   .filosofia-grid {
     flex-direction: row;
@@ -552,11 +617,10 @@ h1, h2, h3, h4, .logo-text {
   .contacto-info {
     flex: 1;
   }
+  /* En tablet, el carrusel sigue siendo cuadrado */
 }
 
-/* Escritorio (≥ 900px) */
 @media (min-width: 900px) {
-  /* Menú horizontal siempre visible */
   .menu-toggle {
     display: none;
   }
@@ -595,15 +659,11 @@ h1, h2, h3, h4, .logo-text {
   .catalogo-grid {
     grid-template-columns: repeat(3, 1fr);
   }
-  .galeria-grid {
-    grid-template-columns: repeat(4, 1fr);
-  }
   .contacto-grid {
     gap: 3rem;
   }
 }
 
-/* Pantallas grandes (≥ 1200px) */
 @media (min-width: 1200px) {
   .catalogo-grid {
     grid-template-columns: repeat(4, 1fr);
