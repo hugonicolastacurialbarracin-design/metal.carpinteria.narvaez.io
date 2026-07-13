@@ -1,6 +1,6 @@
 // ============================================================
 // SCRIPT - Metal Carpintería Narváez
-// Menú hamburguesa, WhatsApp, catálogo dinámico, galería con carruseles
+// Menú hamburguesa, catálogo dinámico, galería con carruseles, validación de formulario
 // ============================================================
 
 (function() {
@@ -36,33 +36,7 @@
     });
   }
 
-  // ---------- 2. WHATSAPP ----------
-  const DEFAULT_WHATSAPP_MESSAGE = 'Hola, me gustaría cotizar un mueble a medida. ¿Podrían ayudarme?';
-  const PHONE_NUMBER = '0982021792';
-
-  function handleWhatsAppClick(e) {
-    const btn = e.currentTarget;
-    let message = btn.getAttribute('data-message') || DEFAULT_WHATSAPP_MESSAGE;
-    const card = btn.closest('.producto-card');
-    if (card) {
-      const title = card.querySelector('h3')?.textContent?.trim() || '';
-      if (title) {
-        message = `Hola, me interesa cotizar "${title}". ¿Podrían darme más información?`;
-      }
-    }
-    const encoded = encodeURIComponent(message);
-    const url = `https://wa.me/${PHONE_NUMBER}?text=${encoded}`;
-    window.open(url, '_blank');
-  }
-
-  document.addEventListener('DOMContentLoaded', function() {
-    const whatsappBtns = document.querySelectorAll('.btn-whatsapp');
-    whatsappBtns.forEach(btn => {
-      btn.addEventListener('click', handleWhatsAppClick);
-    });
-  });
-
-  // ---------- 3. DATOS DE PRODUCTOS CON MÚLTIPLES IMÁGENES ----------
+  // ---------- 2. DATOS DE PRODUCTOS CON MÚLTIPLES IMÁGENES ----------
   const productosData = [
     {
       nombre: 'Armarios a medida',
@@ -146,7 +120,7 @@
     }
   ];
 
-  // ---------- 4. RENDERIZAR CATÁLOGO ----------
+  // ---------- 3. RENDERIZAR CATÁLOGO (sin botón de WhatsApp) ----------
   function renderCatalogo() {
     const grid = document.getElementById('catalogoGrid');
     if (!grid) return;
@@ -160,22 +134,14 @@
           <h3>${prod.nombre}</h3>
           <p class="producto-material">Material sugerido: ${prod.material}</p>
           <p class="producto-desc">${prod.desc}</p>
-          <a href="#" class="btn btn-whatsapp" data-message="Hola, me interesa cotizar "${prod.nombre}". ¿Podrían darme más información?">
-            <i class="fab fa-whatsapp"></i> Trabajo bajo pedido - Cotizar diseño
-          </a>
+          <!-- Botón de WhatsApp eliminado -->
         </div>
       `;
     });
     grid.innerHTML = html;
-
-    // Reasignar eventos a los nuevos botones
-    const newBtns = grid.querySelectorAll('.btn-whatsapp');
-    newBtns.forEach(btn => {
-      btn.addEventListener('click', handleWhatsAppClick);
-    });
   }
 
-  // ---------- 5. RENDERIZAR GALERÍA CON CARRUSELES ----------
+  // ---------- 4. RENDERIZAR GALERÍA CON CARRUSELES ----------
   function renderGaleria() {
     const container = document.getElementById('galeriaContainer');
     if (!container) return;
@@ -184,13 +150,11 @@
     productosData.forEach((prod, index) => {
       if (prod.imagenes.length === 0) return;
 
-      // Crear los slides
       let slidesHtml = '';
       prod.imagenes.forEach((img) => {
         slidesHtml += `<img src="${img}" alt="${prod.nombre}" class="carrusel-slide" loading="lazy" />`;
       });
 
-      // Crear indicadores
       let indicadoresHtml = '';
       for (let i = 0; i < prod.imagenes.length; i++) {
         indicadoresHtml += `<button class="carrusel-indicador ${i === 0 ? 'active' : ''}" data-index="${i}"></button>`;
@@ -214,19 +178,17 @@
     });
     container.innerHTML = html;
 
-    // Inicializar cada carrusel
     inicializarCarruseles();
   }
 
-  // ---------- 6. LÓGICA DE CARRUSELES ----------
+  // ---------- 5. LÓGICA DE CARRUSELES ----------
   function inicializarCarruseles() {
     const categorias = document.querySelectorAll('.carrusel-categoria');
-    categorias.forEach((cat, idx) => {
+    categorias.forEach((cat) => {
       const slidesContainer = cat.querySelector('.carrusel-slides');
       const slides = slidesContainer.querySelectorAll('.carrusel-slide');
       const totalSlides = slides.length;
       if (totalSlides <= 1) {
-        // Ocultar botones si solo hay una imagen
         cat.querySelector('.carrusel-btn.prev').style.display = 'none';
         cat.querySelector('.carrusel-btn.next').style.display = 'none';
         cat.querySelector('.carrusel-indicadores').style.display = 'none';
@@ -244,7 +206,6 @@
         currentIndex = index;
         const offset = -currentIndex * 100;
         slidesContainer.style.transform = `translateX(${offset}%)`;
-        // Actualizar indicadores
         indicadores.forEach((ind, i) => {
           ind.classList.toggle('active', i === currentIndex);
         });
@@ -265,12 +226,10 @@
           goToSlide(i);
         });
       });
-
-      // Opcional: teclado o touch, pero por simplicidad no se implementa.
     });
   }
 
-  // ---------- 7. VALIDACIÓN DEL FORMULARIO ----------
+  // ---------- 6. VALIDACIÓN DEL FORMULARIO (sin envío real) ----------
   function initForm() {
     const form = document.getElementById('contactForm');
     const feedback = document.getElementById('formFeedback');
@@ -311,6 +270,7 @@
         [nombre, email, mensaje].forEach(field => {
           field.style.borderColor = '';
         });
+        // Aquí podrías agregar una llamada a un servicio de envío de correos (ej. EmailJS)
       } else {
         feedback.textContent = '❌ ' + errorMsg;
         feedback.className = 'form-feedback error';
@@ -318,20 +278,16 @@
     });
   }
 
-  // ---------- 8. EJECUTAR AL CARGAR ----------
+  // ---------- 7. EJECUTAR AL CARGAR ----------
   if (document.readyState === 'loading') {
     document.addEventListener('DOMContentLoaded', function() {
       renderCatalogo();
       renderGaleria();
       initForm();
-      const heroBtns = document.querySelectorAll('.hero .btn-whatsapp');
-      heroBtns.forEach(btn => btn.addEventListener('click', handleWhatsAppClick));
     });
   } else {
     renderCatalogo();
     renderGaleria();
     initForm();
-    const heroBtns = document.querySelectorAll('.hero .btn-whatsapp');
-    heroBtns.forEach(btn => btn.addEventListener('click', handleWhatsAppClick));
   }
 })();
