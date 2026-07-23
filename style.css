@@ -74,13 +74,6 @@ h1, h2, h3, h4, .logo-text {
   background-color: #556b2f;
   transform: scale(1.02);
 }
-.btn-whatsapp {
-  background-color: #25d366;
-  color: #fff;
-}
-.btn-whatsapp:hover {
-  background-color: #1da85c;
-}
 
 /* ============================================================
    ENCABEZADO
@@ -252,69 +245,7 @@ h1, h2, h3, h4, .logo-text {
 }
 
 /* ============================================================
-   CATÁLOGO
-   ============================================================ */
-.catalogo {
-  padding: 3rem 0;
-}
-.catalogo-intro {
-  text-align: center;
-  margin-bottom: 2rem;
-  font-size: 1.1rem;
-  color: #5a4c3c;
-}
-.catalogo-grid {
-  display: grid;
-  grid-template-columns: 1fr;
-  gap: 1.8rem;
-}
-
-.producto-card {
-  background: #fffcf8;
-  border-radius: 16px;
-  padding: 1.5rem;
-  box-shadow: 0 4px 12px rgba(0,0,0,0.04);
-  border: 1px solid #e6d9cc;
-  transition: transform 0.2s, box-shadow 0.2s;
-  display: flex;
-  flex-direction: column;
-}
-.producto-card:hover {
-  transform: translateY(-4px);
-  box-shadow: 0 8px 24px rgba(0,0,0,0.06);
-}
-.producto-card .producto-imagen {
-  width: 100%;
-  height: 180px;
-  object-fit: cover;
-  border-radius: 8px;
-  margin-bottom: 1rem;
-  background-color: #e6d9cc;
-}
-.producto-card h3 {
-  font-size: 1.3rem;
-  margin-bottom: 0.3rem;
-  color: #3e2c1b;
-}
-.producto-card .producto-material {
-  font-size: 0.9rem;
-  color: #6b4f3c;
-  margin-bottom: 0.6rem;
-  font-style: italic;
-}
-.producto-card .producto-desc {
-  flex: 1;
-  margin-bottom: 1rem;
-  color: #3d352c;
-}
-.producto-card .btn {
-  align-self: flex-start;
-  padding: 0.5rem 1.2rem;
-  font-size: 0.9rem;
-}
-
-/* ============================================================
-   GALERÍA CON CARRUSELES (MEJORADA)
+   GALERÍA CON CARRUSELES Y LEYENDA
    ============================================================ */
 .galeria {
   padding: 3rem 0;
@@ -344,15 +275,14 @@ h1, h2, h3, h4, .logo-text {
 
 .carrusel-wrapper {
   position: relative;
-  width: 300px;          /* ← Ancho fijo */
-  height: 300px;         /* ← Alto fijo (cuadrado) */
-  margin: 0 auto;        /* Centrado */
+  width: 300px;
+  height: 300px;
+  margin: 0 auto;
   overflow: hidden;
   border-radius: 12px;
   background-color: #e6d9cc;
 }
 
-/* Slides: contenedor absoluto que ocupa todo el espacio */
 .carrusel-slides {
   position: absolute;
   top: 0;
@@ -363,12 +293,30 @@ h1, h2, h3, h4, .logo-text {
   transition: transform 0.4s ease;
 }
 
-/* Cada slide ocupa el 100% del contenedor */
 .carrusel-slide {
-  min-width: 100%;
+  width: 100%;
   height: 100%;
   object-fit: cover;
   display: block;
+}
+
+/* Leyenda transparente */
+.carrusel-leyenda {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  padding: 0.6rem 0;
+  background: rgba(0, 0, 0, 0.5);
+  color: #fff;
+  font-family: 'Lato', sans-serif;
+  font-weight: 700;
+  font-size: 1rem;
+  text-align: center;
+  letter-spacing: 0.5px;
+  backdrop-filter: blur(4px);
+  border-radius: 0 0 12px 12px;
+  pointer-events: none;
 }
 
 /* Botones de navegación */
@@ -400,7 +348,6 @@ h1, h2, h3, h4, .logo-text {
   right: 10px;
 }
 
-/* Indicadores */
 .carrusel-indicadores {
   display: flex;
   justify-content: center;
@@ -421,7 +368,64 @@ h1, h2, h3, h4, .logo-text {
 }
 
 /* ============================================================
-   MEDIOS DE PAGO
+   CATÁLOGO (IMÁGENES RECTANGULARES, 3 COLUMNAS EN ESCRITORIO)
+   ============================================================ */
+.catalogo {
+  padding: 3rem 0;
+}
+.catalogo-intro {
+  text-align: center;
+  margin-bottom: 2rem;
+  font-size: 1.1rem;
+  color: #5a4c3c;
+}
+.catalogo-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 2rem;
+}
+
+.producto-card {
+  background: #fffcf8;
+  border-radius: 16px;
+  padding: 1.5rem;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.04);
+  border: 1px solid #e6d9cc;
+  transition: transform 0.2s, box-shadow 0.2s;
+  display: flex;
+  flex-direction: column;
+}
+.producto-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 8px 24px rgba(0,0,0,0.06);
+}
+.producto-card .producto-imagen {
+  width: 100%;
+  aspect-ratio: 4 / 3;   /* Rectangular */
+  object-fit: cover;
+  border-radius: 8px;
+  margin-bottom: 1rem;
+  background-color: #e6d9cc;
+}
+.producto-card h3 {
+  font-size: 1.3rem;
+  margin-bottom: 0.3rem;
+  color: #3e2c1b;
+}
+.producto-card .producto-material {
+  font-size: 0.9rem;
+  color: #6b4f3c;
+  margin-bottom: 0.6rem;
+  font-style: italic;
+}
+.producto-card .producto-desc {
+  flex: 1;
+  margin-bottom: 1rem;
+  color: #3d352c;
+}
+
+/* ============================================================
+   MEDIOS DE PAGO (SOLO EFECTIVO)
    ============================================================ */
 .pagos {
   padding: 3rem 0;
@@ -429,8 +433,7 @@ h1, h2, h3, h4, .logo-text {
 }
 .pagos-content {
   display: flex;
-  flex-direction: column;
-  gap: 2rem;
+  justify-content: center;
   margin-top: 1rem;
 }
 .pagos-item {
@@ -439,6 +442,8 @@ h1, h2, h3, h4, .logo-text {
   border-radius: 16px;
   text-align: center;
   box-shadow: 0 4px 12px rgba(0,0,0,0.04);
+  max-width: 400px;
+  width: 100%;
 }
 .pagos-icon {
   font-size: 2.8rem;
@@ -599,14 +604,6 @@ h1, h2, h3, h4, .logo-text {
   .filosofia-card {
     flex: 1;
   }
-  .pagos-content {
-    flex-direction: row;
-    justify-content: center;
-  }
-  .pagos-item {
-    flex: 1;
-    max-width: 400px;
-  }
   .contacto-grid {
     flex-direction: row;
     align-items: flex-start;
@@ -617,7 +614,6 @@ h1, h2, h3, h4, .logo-text {
   .contacto-info {
     flex: 1;
   }
-  /* En tablet, el carrusel sigue siendo cuadrado */
 }
 
 @media (min-width: 900px) {
@@ -657,15 +653,11 @@ h1, h2, h3, h4, .logo-text {
     max-height: 400px;
   }
   .catalogo-grid {
-    grid-template-columns: repeat(3, 1fr);
+    grid-template-columns: repeat(3, 1fr);  /* 3 columnas fijas */
   }
   .contacto-grid {
     gap: 3rem;
   }
 }
 
-@media (min-width: 1200px) {
-  .catalogo-grid {
-    grid-template-columns: repeat(4, 1fr);
-  }
-}
+/* Eliminamos la regla para 4 columnas en 1200px, para mantener 3 */
