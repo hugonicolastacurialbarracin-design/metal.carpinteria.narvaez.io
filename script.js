@@ -43,38 +43,37 @@
       nombre: 'Armarios a medida',
       material: 'Madera o metal, según preferencia',
       desc: 'Diseños personalizados para cada espacio.',
-      imagenes: ['armario.jpg', 'armario.png', 'armario3.png', 'armario2.png', 'armario4.png']
+      imagenes: ['armario3.png', 'armario.png', 'armario2 (2).png', 'armario4.png', 'armario5.png', 'armario6.png']
     },
     {
       nombre: 'Mesas familiares',
       material: 'Madera',
       desc: 'Mesas amplias y duraderas para reuniones.',
-      imagenes: ['mesa2.png', 'mesa1.png']   // Principal: mesa2.png
+      imagenes: ['mesa2.png', 'mesa1.png']
     },
     {
       nombre: 'Sillas de madera',
       material: 'Madera o metal, según preferencia',
       desc: 'Sólidas, cómodas y con estilo rústico.',
-      imagenes: ['sillas.png', 'sillas2.png', 'sillas3.png']
+      imagenes: ['sillas2.png', 'sillas3.png']
     },
     {
       nombre: 'Aparadores',
       material: 'Unitarios o juegos completos',
       desc: 'Elegancia y funcionalidad para tu hogar.',
-      imagenes: ['aparadores.png', 'juego_aparadores.png']
+      imagenes: ['juego_aparadores.png', 'juegoaparadores2.png']
     },
     {
       nombre: 'Puertas',
       material: 'Madera',
       desc: 'Seguridad y belleza en la entrada.',
-      imagenes: ['puerta4.png', 'puerta5.png', 'puerta3.png', 'puerta2.png', 'puerta1.png'] // Principal: puerta4.png
+      imagenes: ['puerta4.png', 'puerta5.png', 'puerta3.png', 'puerta2.png', 'puerta1.png']
     },
-    // Eliminados: Marcos, Letreros, Cobertizos, Casitas
     {
       nombre: 'Camas',
       material: 'Madera o metal, según preferencia',
       desc: 'Diseños únicos para un descanso reparador.',
-      imagenes: ['camas.png', 'cama2.png', 'camas3.png']
+      imagenes: ['cama2.png', 'camas3.png']
     },
     {
       nombre: 'Escaleras',
