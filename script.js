@@ -1,6 +1,7 @@
 // ============================================================
 // SCRIPT - Metal Carpintería Narváez
-// Menú hamburguesa, catálogo dinámico, galería con carruseles, validación de formulario
+// Menú hamburguesa, galería con carruseles y leyendas,
+// catálogo dinámico, envío de correos con EmailJS
 // ============================================================
 
 (function() {
@@ -36,21 +37,19 @@
     });
   }
 
-  // ---------- 2. DATOS DE PRODUCTOS CON MÚLTIPLES IMÁGENES ----------
+  // ---------- 2. DATOS DE PRODUCTOS (ACTUALIZADOS) ----------
   const productosData = [
     {
       nombre: 'Armarios a medida',
       material: 'Madera o metal, según preferencia',
       desc: 'Diseños personalizados para cada espacio.',
-      imagenes: [
-        'armario.jpg', 'armario.png', 'armario3.png', 'armario2.png', 'armario4.png'
-      ]
+      imagenes: ['armario.jpg', 'armario.png', 'armario3.png', 'armario2.png', 'armario4.png']
     },
     {
       nombre: 'Mesas familiares',
       material: 'Madera',
       desc: 'Mesas amplias y duraderas para reuniones.',
-      imagenes: ['mesas.jpg']
+      imagenes: ['mesa2.png', 'mesa1.png']   // Principal: mesa2.png
     },
     {
       nombre: 'Sillas de madera',
@@ -68,37 +67,14 @@
       nombre: 'Puertas',
       material: 'Madera',
       desc: 'Seguridad y belleza en la entrada.',
-      imagenes: ['puertas.png']
+      imagenes: ['puerta4.png', 'puerta5.png', 'puerta3.png', 'puerta2.png', 'puerta1.png'] // Principal: puerta4.png
     },
-    {
-      nombre: 'Marcos para fotos o pinturas',
-      material: 'Madera',
-      desc: 'Perfectos para decorar tu espacio.',
-      imagenes: ['marcos.png']
-    },
-    {
-      nombre: 'Letreros tallados',
-      material: 'Madera',
-      desc: 'Arte en madera para negocios y hogares.',
-      imagenes: ['letreros.png']
-    },
+    // Eliminados: Marcos, Letreros, Cobertizos, Casitas
     {
       nombre: 'Camas',
       material: 'Madera o metal, según preferencia',
       desc: 'Diseños únicos para un descanso reparador.',
       imagenes: ['camas.png', 'cama2.png', 'camas3.png']
-    },
-    {
-      nombre: 'Cobertizos',
-      material: 'Madera',
-      desc: 'Estructuras exteriores resistentes y hermosas.',
-      imagenes: ['cobertizo.png']
-    },
-    {
-      nombre: 'Casitas para mascotas',
-      material: 'Madera',
-      desc: 'Hogares acogedores para tus compañeros.',
-      imagenes: ['casa_perro.png']
     },
     {
       nombre: 'Escaleras',
@@ -134,14 +110,13 @@
           <h3>${prod.nombre}</h3>
           <p class="producto-material">Material sugerido: ${prod.material}</p>
           <p class="producto-desc">${prod.desc}</p>
-          <!-- Botón de WhatsApp eliminado -->
         </div>
       `;
     });
     grid.innerHTML = html;
   }
 
-  // ---------- 4. RENDERIZAR GALERÍA CON CARRUSELES ----------
+  // ---------- 4. RENDERIZAR GALERÍA CON CARRUSELES Y LEYENDAS ----------
   function renderGaleria() {
     const container = document.getElementById('galeriaContainer');
     if (!container) return;
@@ -152,7 +127,12 @@
 
       let slidesHtml = '';
       prod.imagenes.forEach((img) => {
-        slidesHtml += `<img src="${img}" alt="${prod.nombre}" class="carrusel-slide" loading="lazy" />`;
+        slidesHtml += `
+          <div class="carrusel-slide-wrapper" style="min-width:100%; height:100%; position:relative;">
+            <img src="${img}" alt="${prod.nombre}" class="carrusel-slide" loading="lazy" />
+            <div class="carrusel-leyenda">${prod.nombre}</div>
+          </div>
+        `;
       });
 
       let indicadoresHtml = '';
@@ -186,7 +166,7 @@
     const categorias = document.querySelectorAll('.carrusel-categoria');
     categorias.forEach((cat) => {
       const slidesContainer = cat.querySelector('.carrusel-slides');
-      const slides = slidesContainer.querySelectorAll('.carrusel-slide');
+      const slides = slidesContainer.querySelectorAll('.carrusel-slide-wrapper');
       const totalSlides = slides.length;
       if (totalSlides <= 1) {
         cat.querySelector('.carrusel-btn.prev').style.display = 'none';
@@ -229,7 +209,7 @@
     });
   }
 
-  // ---------- 6. VALIDACIÓN DEL FORMULARIO (sin envío real) ----------
+  // ---------- 6. FORMULARIO DE CONTACTO CON EMAILJS ----------
   function initForm() {
     const form = document.getElementById('contactForm');
     const feedback = document.getElementById('formFeedback');
@@ -242,12 +222,10 @@
       const email = document.getElementById('email');
       const mensaje = document.getElementById('mensaje');
 
-      [nombre, email, mensaje].forEach(field => {
-        field.style.borderColor = '';
-      });
-
+      // Validación
       let valid = true;
       let errorMsg = '';
+      [nombre, email, mensaje].forEach(field => field.style.borderColor = '');
 
       if (!nombre.value.trim()) {
         valid = false;
@@ -263,18 +241,46 @@
         errorMsg = 'Escribe tu mensaje para poder ayudarte.';
       }
 
-      if (valid) {
-        feedback.textContent = '✅ ¡Mensaje enviado con éxito! Te responderemos a la brevedad.';
-        feedback.className = 'form-feedback success';
-        form.reset();
-        [nombre, email, mensaje].forEach(field => {
-          field.style.borderColor = '';
-        });
-        // Aquí podrías agregar una llamada a un servicio de envío de correos (ej. EmailJS)
-      } else {
+      if (!valid) {
         feedback.textContent = '❌ ' + errorMsg;
         feedback.className = 'form-feedback error';
+        return;
       }
+
+      // ---------- CONFIGURACIÓN DE EMAILJS ----------
+      // Reemplaza estos valores con los tuyos desde EmailJS
+      const serviceID = 'service_xxxxxxxx';   // Tu Service ID
+      const templateID = 'template_xxxxxxxx'; // Tu Template ID
+      const publicKey = 'xxxxxxxxxxxxxxxx';   // Tu Public Key
+
+      // Inicializar EmailJS (solo una vez)
+      if (typeof emailjs !== 'undefined') {
+        emailjs.init(publicKey);
+      } else {
+        feedback.textContent = '❌ Error: EmailJS no está cargado.';
+        feedback.className = 'form-feedback error';
+        return;
+      }
+
+      const params = {
+        from_name: nombre.value,
+        from_email: email.value,
+        message: mensaje.value,
+        to_email: 'alfredronarvaez@gmail.com'
+      };
+
+      emailjs.send(serviceID, templateID, params)
+        .then(function(response) {
+          feedback.textContent = '✅ ¡Mensaje enviado con éxito! Te responderemos a la brevedad.';
+          feedback.className = 'form-feedback success';
+          form.reset();
+          [nombre, email, mensaje].forEach(field => field.style.borderColor = '');
+        })
+        .catch(function(error) {
+          feedback.textContent = '❌ Error al enviar el mensaje. Intenta de nuevo más tarde.';
+          feedback.className = 'form-feedback error';
+          console.error('EmailJS error:', error);
+        });
     });
   }
 
