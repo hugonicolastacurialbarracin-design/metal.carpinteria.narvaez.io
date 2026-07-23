@@ -8,6 +8,8 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Lato:wght@300;400;700&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" />
+  <!-- EmailJS -->
+  <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
   <link rel="stylesheet" href="style.css" />
 </head>
 <body>
@@ -27,8 +29,8 @@
         <ul class="nav-list">
           <li><a href="#hero">Inicio</a></li>
           <li><a href="#filosofia">Filosofía</a></li>
+          <li><a href="#galeria">Galería</a></li>          <!-- Orden cambiado -->
           <li><a href="#catalogo">Catálogo</a></li>
-          <li><a href="#galeria">Galería</a></li>
           <li><a href="#pagos">Pagos</a></li>
           <li><a href="#contacto">Contacto</a></li>
         </ul>
@@ -74,29 +76,25 @@
     </div>
   </section>
 
-  <!-- ========== CATÁLOGO DE SERVICIOS ========== -->
-  <section id="catalogo" class="catalogo">
-    <div class="container">
-      <h2 class="section-title">Catálogo de Servicios</h2>
-      <p class="catalogo-intro">
-        Diseños personalizados, siempre bajo pedido.
-      </p>
-      <div class="catalogo-grid" id="catalogoGrid">
-      </div>
-    </div>
-  </section>
-
-  <!-- ========== GALERÍA CON CARRUSELES POR CATEGORÍA ========== -->
+  <!-- ========== GALERÍA CON CARRUSELES (AHORA ANTES DEL CATÁLOGO) ========== -->
   <section id="galeria" class="galeria">
     <div class="container">
       <h2 class="section-title">Trabajos a servicio</h2>
       <p class="galeria-intro">Cada categoría muestra todas las imágenes disponibles. Desliza para ver más.</p>
-      <div id="galeriaContainer">
-      </div>
+      <div id="galeriaContainer"></div>
     </div>
   </section>
 
-  <!-- ========== MEDIOS DE PAGO ========== -->
+  <!-- ========== CATÁLOGO DE SERVICIOS ========== -->
+  <section id="catalogo" class="catalogo">
+    <div class="container">
+      <h2 class="section-title">Catálogo de Servicios</h2>
+      <p class="catalogo-intro">Diseños personalizados, siempre bajo pedido.</p>
+      <div class="catalogo-grid" id="catalogoGrid"></div>
+    </div>
+  </section>
+
+  <!-- ========== MEDIOS DE PAGO (SOLO EFECTIVO) ========== -->
   <section id="pagos" class="pagos">
     <div class="container">
       <h2 class="section-title">Medios de Pago</h2>
@@ -106,7 +104,7 @@
           <h3>Efectivo</h3>
           <p>Pago en el taller.</p>
         </div>
-        <!-- Eliminada la tarjeta de Transferencia Bancaria -->
+        <!-- Transferencia eliminada -->
       </div>
     </div>
   </section>
@@ -143,7 +141,7 @@
             <ul class="redes-list">
               <li><a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i> Instagram</a></li>
               <li><a href="#" aria-label="Facebook"><i class="fab fa-facebook"></i> Facebook</a></li>
-              <li><a href="#" aria-label="WhatsApp"><i class="fab fa-whatsapp"></i> WhatsApp</a></li>
+              <!-- WhatsApp eliminado -->
             </ul>
           </div>
           <div class="contacto-mapa">
@@ -167,13 +165,11 @@
   <!-- ========== PIE DE PÁGINA ========== -->
   <footer class="footer">
     <div class="container footer-container">
-      <p class="footer-copy">
-        &copy; 2026 Metal Carpintería Narváez. Todos los derechos reservados.
-      </p>
+      <p class="footer-copy">&copy; 2026 Metal Carpintería Narváez. Todos los derechos reservados.</p>
       <ul class="footer-links">
         <li><a href="#hero">Inicio</a></li>
-        <li><a href="#catalogo">Catálogo</a></li>
         <li><a href="#galeria">Galería</a></li>
+        <li><a href="#catalogo">Catálogo</a></li>
         <li><a href="#contacto">Contacto</a></li>
       </ul>
     </div>
