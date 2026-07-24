@@ -127,7 +127,7 @@
       let slidesHtml = '';
       prod.imagenes.forEach((img) => {
         slidesHtml += `
-          <div class="carrusel-slide-wrapper" style="min-width:100%; height:100%; position:relative;">
+          <div class="carrusel-slide-wrapper">
             <img src="${img}" alt="${prod.nombre}" class="carrusel-slide" loading="lazy" />
             <div class="carrusel-leyenda">${prod.nombre}</div>
           </div>
@@ -205,6 +205,11 @@
           goToSlide(i);
         });
       });
+
+      // Auto-play opcional (descomentar si se desea)
+      // let autoPlay = setInterval(() => goToSlide(currentIndex + 1), 4000);
+      // cat.addEventListener('mouseenter', () => clearInterval(autoPlay));
+      // cat.addEventListener('mouseleave', () => autoPlay = setInterval(() => goToSlide(currentIndex + 1), 4000));
     });
   }
 
